@@ -4,8 +4,9 @@ const mongoose=require('mongoose')
 const User = mongoose.model('User')
 const bcrypt = require('bcryptjs')
 const Admin=mongoose.model('Admin')
+require('dotenv').config()
 const jwt=require("jsonwebtoken")
- const {JWT_SERECTKEY}=require('../keys')
+const JWT_SERECTKEY=process.env.JWT_SERECTKEY;
 
 const middleware=(req,res,next)=>{
       //  console.log(req.headers)
@@ -46,7 +47,7 @@ const adminmiddleware=(req,res,next)=>{
         const {_id}=payload
         Admin.findById(_id).then(userdata=>{
             req.user=userdata
-            console.log(userdata)
+        //    console.log(userdata)
             next()
         })  
     })
