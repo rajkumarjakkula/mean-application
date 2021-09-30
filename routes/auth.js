@@ -43,7 +43,7 @@ const adminmiddleware=(req,res,next)=>{
         if(err){
             return res.status(401).json({error:"you must be logged in"})
         }
-       console.log(payload,token)
+     //  console.log(payload,token)
         const {_id}=payload
         Admin.findById(_id).then(userdata=>{
             req.user=userdata
